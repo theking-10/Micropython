@@ -1,0 +1,274 @@
+# MANUAL DE USO DEL CLIENTE
+
+## Sistema de Comunicación Bluetooth entre Microcontroladores
+
+### 1. Introducción
+
+El presente manual tiene como objetivo explicar al cliente el funcionamiento y uso básico del sistema de comunicación inalámbrica mediante Bluetooth entre dos microcontroladores ESP32.
+
+El sistema permite que un microcontrolador principal envíe una señal inalámbrica a un segundo microcontrolador. Al recibir correctamente la señal, ambos dispositivos pueden realizar una acción determinada, como encender un LED.
+
+El sistema está diseñado para facilitar la comunicación entre dispositivos sin necesidad de utilizar cables de comunicación entre ellos.
+
+---
+
+## 2. Componentes del sistema
+
+El sistema está compuesto principalmente por:
+
+- 2 microcontroladores ESP32.
+- 2 LEDs indicadores.
+- Resistencias para los LEDs.
+- Fuente de alimentación para cada ESP32.
+- Conexión Bluetooth BLE.
+- Código de control instalado en cada microcontrolador.
+
+El primer ESP32 funciona como dispositivo emisor y el segundo como dispositivo receptor.
+
+---
+
+## 3. Funcionamiento general
+
+El funcionamiento del sistema se realiza de la siguiente manera:
+
+1. Se enciende el primer ESP32.
+2. Se enciende el segundo ESP32.
+3. Los dispositivos activan la comunicación Bluetooth.
+4. El ESP32 emisor establece comunicación con el ESP32 receptor.
+5. El usuario genera una señal desde el dispositivo emisor.
+6. El ESP32 emisor transmite la señal mediante Bluetooth.
+7. El ESP32 receptor recibe la señal.
+8. Al recibir la señal correctamente, el receptor enciende su LED.
+9. El ESP32 emisor también puede encender su LED para indicar que la señal fue enviada.
+
+De esta manera, el usuario puede comprobar visualmente que la comunicación entre ambos dispositivos está funcionando.
+
+---
+
+## 4. Encendido del sistema
+
+Para comenzar a utilizar el sistema:
+
+1. Conecte la alimentación del ESP32 emisor.
+2. Conecte la alimentación del ESP32 receptor.
+3. Espere unos segundos para que ambos dispositivos inicien.
+4. Verifique que los dispositivos tengan sus indicadores funcionando.
+5. Espere a que se establezca la conexión Bluetooth.
+
+No desconecte la alimentación mientras los dispositivos estén realizando una comunicación.
+
+---
+
+## 5. Uso del dispositivo emisor
+
+El ESP32 emisor es el encargado de generar y transmitir la señal.
+
+Para utilizarlo:
+
+1. Verifique que el ESP32 esté encendido.
+2. Compruebe que Bluetooth esté activo.
+3. Genere la señal mediante el botón o mecanismo configurado.
+4. El ESP32 enviará la señal al segundo dispositivo.
+5. El LED del emisor indicará que la señal fue generada.
+
+Por ejemplo, cuando se envía la señal:
+
+**"1" = Encender**
+
+El dispositivo receptor interpreta esta señal y realiza la acción correspondiente.
+
+---
+
+## 6. Funcionamiento del dispositivo receptor
+
+El segundo ESP32 funciona como receptor.
+
+Este dispositivo permanece esperando una señal proveniente del ESP32 emisor.
+
+Cuando recibe una señal válida:
+
+- Procesa la información.
+- Identifica la instrucción recibida.
+- Ejecuta la acción correspondiente.
+- Enciende el LED como indicador.
+
+Por ejemplo:
+
+**Señal recibida: "1"**
+
+**Acción: Encender LED**
+
+Si posteriormente se utiliza una señal:
+
+**"0"**
+
+el sistema puede configurarse para apagar el LED.
+
+---
+
+## 7. Indicadores del sistema
+
+Los LEDs sirven como indicadores visuales del funcionamiento.
+
+### LED apagado
+
+Puede indicar que:
+
+- El dispositivo está esperando una señal.
+- No se ha recibido ninguna instrucción.
+- El sistema se encuentra en estado de espera.
+
+### LED encendido
+
+Puede indicar que:
+
+- Se recibió una señal.
+- La instrucción fue procesada.
+- La acción solicitada fue ejecutada correctamente.
+
+---
+
+## 8. Comunicación Bluetooth
+
+La comunicación entre los dos microcontroladores se realiza mediante Bluetooth BLE.
+
+El usuario no necesita realizar conexiones mediante cables entre los ESP32 para enviar la información.
+
+La comunicación se realiza de forma inalámbrica siempre que ambos dispositivos se encuentren dentro del alcance permitido por la tecnología Bluetooth y no existan obstáculos o interferencias importantes.
+
+---
+
+## 9. Recomendaciones de uso
+
+Para garantizar el correcto funcionamiento del sistema se recomienda:
+
+- Mantener ambos ESP32 correctamente alimentados.
+- Evitar desconectar los dispositivos durante la comunicación.
+- Mantener los dispositivos dentro de un rango adecuado.
+- Evitar colocar los dispositivos cerca de fuentes fuertes de interferencia inalámbrica.
+- No modificar el cableado sin apagar previamente el sistema.
+- No conectar componentes con voltajes diferentes a los especificados.
+- Mantener los microcontroladores protegidos contra humedad y polvo.
+- Revisar que los LEDs y resistencias estén correctamente conectados.
+
+---
+
+## 10. Solución de problemas
+
+### El LED no enciende
+
+Verifique:
+
+1. Que el ESP32 tenga alimentación.
+2. Que el LED esté conectado correctamente.
+3. Que la resistencia esté correctamente instalada.
+4. Que el programa esté ejecutándose.
+5. Que se haya enviado la señal correcta.
+
+### Los ESP32 no se conectan
+
+Verifique:
+
+1. Que ambos dispositivos estén encendidos.
+2. Que Bluetooth BLE esté activo.
+3. Que el ESP32 receptor esté disponible.
+4. Que el emisor esté buscando el dispositivo correcto.
+5. Reinicie ambos dispositivos e intente nuevamente.
+
+### El receptor no responde
+
+Compruebe:
+
+- La conexión Bluetooth.
+- La distancia entre los dispositivos.
+- La señal enviada.
+- El programa instalado en el receptor.
+- La alimentación eléctrica del receptor.
+
+### El sistema deja de funcionar
+
+En caso de que el sistema deje de responder:
+
+1. Desconecte la alimentación de ambos ESP32.
+2. Espere aproximadamente 5 segundos.
+3. Vuelva a conectar primero el receptor.
+4. Espere unos segundos.
+5. Conecte o reinicie el emisor.
+6. Compruebe nuevamente la comunicación.
+
+---
+
+## 11. Seguridad
+
+El usuario debe manipular el sistema con cuidado.
+
+Antes de realizar cualquier modificación al cableado:
+
+- Desconecte la alimentación.
+- No manipule los componentes con las manos mojadas.
+- No conecte directamente los pines de alimentación entre sí.
+- Utilice únicamente la alimentación especificada para el equipo.
+
+Las modificaciones al programa o al cableado deben ser realizadas por personal que conozca el funcionamiento del sistema.
+
+---
+
+## 12. Mantenimiento
+
+El mantenimiento básico consiste en:
+
+- Revisar periódicamente los cables.
+- Verificar que los LEDs funcionen correctamente.
+- Revisar las conexiones de alimentación.
+- Mantener limpios los dispositivos.
+- Comprobar periódicamente la comunicación Bluetooth.
+- Revisar que los ESP32 no presenten daños físicos.
+
+---
+
+## 13. Resumen de operación
+
+El procedimiento normal de uso es:
+
+**1. Encender los dos ESP32.**
+
+↓  
+
+**2. Esperar a que se active Bluetooth.**
+
+↓
+
+**3. Establecer la comunicación entre ambos dispositivos.**
+
+↓
+
+**4. Generar una señal desde el ESP32 emisor.**
+
+↓
+
+**5. El receptor recibe la señal.**
+
+↓
+
+**6. Los LEDs realizan la acción programada.**
+
+↓
+
+**7. El sistema queda listo para recibir una nueva señal.**
+
+---
+
+## 14. Atención al cliente
+
+En caso de presentar problemas que no puedan solucionarse mediante este manual, se recomienda no modificar el circuito ni el programa por cuenta propia.
+
+Contacte al personal encargado del sistema para realizar una revisión técnica.
+
+### Datos de soporte
+
+**Sistema:** Comunicación inalámbrica mediante Bluetooth BLE  
+**Dispositivo principal:** ESP32  
+**Dispositivo receptor:** ESP32  
+**Medio de comunicación:** Bluetooth Low Energy (BLE)
+
+**Fin del manual de uso.**
